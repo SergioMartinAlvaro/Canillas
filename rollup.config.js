@@ -1,6 +1,9 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
+// Crea alias para importar ficheros sin colocar ruta absoluta.
+import alias from '@rollup/plugin-alias';
+
 /** Bare modules para importar modulos de la libreria de lit-html.
  * import { html } from 'lit-html';
  * 
@@ -100,6 +103,10 @@ const config = {
         replace({
             // Recogemos el valor y lo convertimos
             ENV: JSON.stringify(process.env.NODE_ENV || 'development')
+        }),
+        alias({
+            find: '@Components', replacement: './components',
+            find: '@Utilities', replacement: './utilities'
         })
     ],
     preserveEntrySignatures: false,
